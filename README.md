@@ -25,7 +25,7 @@
 
 # 📖 ToDo list <a name="about-project"></a>
 
-**ToDo List** is a...
+**ToDo List** is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete. It is a very simple yet powerful to-do list. It will be inspired by the minimalist website
 
 ## 🛠 Built With <a name="built-with"></a>
 
