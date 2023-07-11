@@ -1,10 +1,67 @@
-body {
-    background-color: bisque;
+* {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.hello {
-    color: red;
-    background: url('./icon.jpg') no-repeat;
-    background-size: contain;
-    height: 30vh;
-  }
+body {
+  height: 100vh;
+  background-color: bisque;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  max-width: 36rem;
+}
+
+ul {
+  width: 24.37rem;
+  margin: auto;
+  padding: 1rem 1rem 0;
+}
+
+li,
+.button {
+  background-color: #fff;
+  margin-bottom: 0.1rem;
+}
+
+.header,
+.todo-task {
+  padding: 1rem;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 1rem;
+  border: 0;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+input[type=text]::placeholder {
+  font-style: italic;
+}
+
+label {
+  margin-left: 0.5rem;
+}
+
+.button {
+  width: 22.4rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.button > input {
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
