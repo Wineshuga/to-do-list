@@ -6,21 +6,17 @@
 }
 
 body {
-  height: 100vh;
   background-color: bisque;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 main {
-  max-width: 36rem;
+  max-width: 24rem;
+  margin: 3rem auto;
 }
 
-ul {
-  width: 24.37rem;
-  margin: auto;
-  padding: 1rem 1rem 0;
+ul,
+.button {
+  margin: 0 1rem;
 }
 
 li,
@@ -30,7 +26,8 @@ li,
 }
 
 .header,
-.todo-task {
+.todo-task,
+.button {
   padding: 1rem;
 }
 
@@ -52,15 +49,8 @@ label {
   margin-left: 0.5rem;
 }
 
-.button {
-  width: 22.4rem;
-  margin: auto;
-  padding: 1rem;
-}
-
 .button > input {
   width: 100%;
-  margin: 0 auto;
   cursor: pointer;
   border: none;
   background-color: transparent;
