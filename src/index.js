@@ -1,22 +1,33 @@
-
-import _ from 'lodash';
 import './style.css';
-import Icon from './icon.jpg';
 
-function component() {
-    const element = document.createElement('div');
+// Arrayb of Tasks
+const tasks = [
+  {
+    description: 'Wash plate',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Bathe',
+    completed: false,
+    index: 2,
+  },
+];
 
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+const listContainer = document.querySelector('.list-div');
 
-    // Add the image to our existing div.
-    const myIcon = new Image();
-    myIcon.src = Icon;
+// Show tasks
+const showTasks = () => {
+  tasks.forEach((task) => {
+    const listDiv = document.createElement('li');
+    listDiv.innerHTML = `
+    <input type="checkbox" name="task" id="task" >
+    <label>${task.description}</label>
+    `;
+    listDiv.className = 'todo-task';
+    listDiv.setAttribute('draggable', 'true');
+    listContainer.appendChild(listDiv);
+  });
+};
 
-    element.appendChild(myIcon);
-
-    return element;
-  }
-  
-  document.body.appendChild(component());
+showTasks();
