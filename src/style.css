@@ -1,0 +1,10 @@
+body {
+    background-color: bisque;
+}
+
+.hello {
+    color: red;
+    background: url('./icon.jpg') no-repeat;
+    background-size: contain;
+    height: 30vh;
+  }
