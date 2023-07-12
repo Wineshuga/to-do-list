@@ -18,6 +18,7 @@
   - [Install](#install)
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -78,6 +79,11 @@ Install this project with:
 - GitHub: [@githubhandle](https://github.com/wineshuga)
 - Twitter: [@twitterhandle](https://twitter.com/wineshuga)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/wineshuga)
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- Add and remove items (or tasks) from list.
+- Interactive list.
 
 ## 🤝 Contributing <a name="contributing"></a>
 
