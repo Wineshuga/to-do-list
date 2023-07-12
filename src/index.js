@@ -1,22 +1,67 @@
-
-import _ from 'lodash';
 import './style.css';
-import Icon from './icon.jpg';
 
-function component() {
-    const element = document.createElement('div');
+// Arrayb of Tasks
+const tasks = [
+  {
+    description: 'Wash plate',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Bathe',
+    completed: false,
+    index: 2,
+  },
+];
 
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+const listContainer = document.querySelector('.list-div');
 
-    // Add the image to our existing div.
-    const myIcon = new Image();
-    myIcon.src = Icon;
+// Show tasks
+const showTasks = () => {
+  tasks.forEach((task) => {
+    const listDiv = document.createElement('li');
+    listDiv.innerHTML = `
+    <input type="checkbox" name="task" id="task" >
+    <label>${task.description}</label>
+    `;
+    listDiv.className = 'todo-task';
+    listDiv.setAttribute('draggable', 'true');
+    listContainer.appendChild(listDiv);
+  });
+};
 
-    element.appendChild(myIcon);
+// Drag and Drop functionality
+let draggedTask = null;
 
-    return element;
+listContainer.addEventListener('dragstart', (event) => {
+  draggedTask = event.target;
+});
+
+listContainer.addEventListener('dragover', (event) => {
+  event.preventDefault();
+});
+
+const updateIndices = () => {
+  const items = Array.from(listContainer.children);
+  items.forEach((item, index) => {
+    item.dataset.index = index;
+  });
+};
+
+listContainer.addEventListener('drop', (event) => {
+  event.preventDefault();
+  if (draggedTask) {
+    const targetItem = event.target;
+    const targetIndex = Number(targetItem.dataset.index);
+    const draggedIndex = Number(draggedTask.dataset.index);
+
+    if (targetIndex !== draggedIndex) {
+      const items = Array.from(listContainer.children);
+      const targetOffset = targetIndex < draggedIndex ? 0 : 1;
+      listContainer.insertBefore(draggedTask, items[targetIndex + targetOffset]);
+      updateIndices();
+    }
   }
-  
-  document.body.appendChild(component());
+});
+
+showTasks();

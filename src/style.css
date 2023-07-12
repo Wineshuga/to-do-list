@@ -1,10 +1,62 @@
-body {
-    background-color: bisque;
+* {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.hello {
-    color: red;
-    background: url('./icon.jpg') no-repeat;
-    background-size: contain;
-    height: 30vh;
-  }
+body {
+  background-color: bisque;
+}
+
+main {
+  max-width: 24rem;
+  margin: 3rem auto;
+}
+
+ul,
+.button {
+  margin: 0 1rem;
+}
+
+li,
+.button {
+  background-color: #fff;
+  margin-bottom: 0.1rem;
+}
+
+.header,
+.todo-task,
+.button {
+  padding: 1rem;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 1rem;
+  border: 0;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+input[type=text]::placeholder {
+  font-style: italic;
+}
+
+.todo-task,
+label {
+  cursor: move;
+}
+
+label {
+  margin-left: 0.5rem;
+}
+
+.button > input {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
