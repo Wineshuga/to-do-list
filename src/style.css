@@ -14,12 +14,18 @@ main {
   margin: 3rem auto;
 }
 
-ul,
+section,
 .button {
   margin: 0 1rem;
 }
 
-li,
+.header,
+.add-task{
+  display: flex;
+  align-items: center;
+}
+
+div,
 .button {
   background-color: #fff;
   margin-bottom: 0.1rem;
@@ -29,6 +35,10 @@ li,
 .todo-task,
 .button {
   padding: 1rem;
+}
+
+.todo-task {
+  margin-bottom: 0.5rem;
 }
 
 input[type=text] {
@@ -45,13 +55,13 @@ input[type=text]::placeholder {
   font-style: italic;
 }
 
-.todo-task,
+.task,
 label {
   cursor: move;
 }
 
-label {
-  margin-left: 0.5rem;
+.task {
+  margin-right: 0.5rem;
 }
 
 .button > input {
