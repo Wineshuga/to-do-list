@@ -39,6 +39,17 @@ div,
 
 .todo-task {
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-task:hover .bin-btn {
+  display: block;
+}
+
+.bin-btn {
+  display: none;
 }
 
 input[type=text] {
