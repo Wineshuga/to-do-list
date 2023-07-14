@@ -1,10 +1,11 @@
-/* eslint-disable import/no-cycle */
-import { tasks, deleteTask, editTask } from '../index.js';
-
+let tasks = [];
 const setLocalStorage = () => {
   localStorage.setItem('task', JSON.stringify(tasks));
 };
 const getLocalStorage = () => (localStorage.getItem('task') ? JSON.parse(localStorage.getItem('task')) : []);
+
+tasks = getLocalStorage();
+const listContainer = document.querySelector('.all-tasks');
 
 const populateTasks = () => {
   const listContainer = document.querySelector('.all-tasks');
@@ -16,7 +17,7 @@ const populateTasks = () => {
         <div id=${task.index} class="parent--div">
             <p class="desc">${task.desc}</p>
             <form action="" id=${task.index} class="edit--form">
-                <input type="text" name="" class="edit--input" id="" value=${task.desc}>
+                <input type="text" name="" class="edit--input" id="" >
             </form>
         </div>
     </div>
@@ -34,13 +35,16 @@ const populateTasks = () => {
     icon.addEventListener('click', (e) => {
       const { parentElement } = e.target.parentElement;
       const editInput = parentElement.querySelector('.edit--input');
-      editInput.focus();
+      const descText = parentElement.querySelector('.desc');
       parentElement.classList.add('about--to--edit');
+      editInput.value = descText.textContent;
+      editInput.focus();
     });
   });
   deleteIcons.forEach((icon) => {
     icon.addEventListener('click', (e) => {
       const data = e.target.dataset.delete;
+      // eslint-disable-next-line no-use-before-define
       deleteTask(+data);
       populateTasks();
     });
@@ -52,9 +56,83 @@ const populateTasks = () => {
       const inputId = e.target.id;
       const editInput = document.querySelectorAll('.edit--input')[index];
       const { value } = editInput;
+      // eslint-disable-next-line no-use-before-define
       editTask(value, inputId);
     });
   });
 };
+
+function deleteTask(index) {
+  tasks = tasks.filter((task) => task.index !== +index)
+    .map((task, idx) => {
+      task.index = idx + 1;
+      return task;
+    });
+  setLocalStorage();
+}
+
+function editTask(input, index) {
+  tasks = tasks.map((task) => {
+    if (task.index === +index) {
+      task.desc = input;
+      populateTasks();
+      setLocalStorage();
+    }
+    return task;
+  });
+}
+
+function addTasks(desc, complete = false) {
+  const index = tasks.length + 1;
+  const newTask = { desc, complete, index };
+  tasks = [...tasks, newTask];
+  setLocalStorage();
+}
+
+const form = document.querySelector('.add-task');
+const addToListInput = document.querySelector('#add-to-list');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const { value } = addToListInput;
+  if (value) {
+    addTasks(value);
+    populateTasks();
+    addToListInput.value = '';
+  }
+});
+
+// Drag and Drop functionality
+let draggedTask = null;
+
+listContainer.addEventListener('dragstart', (event) => {
+  draggedTask = event.target;
+});
+
+listContainer.addEventListener('dragover', (event) => {
+  event.preventDefault();
+});
+
+const updateIndices = () => {
+  const items = Array.from(listContainer.children);
+  items.forEach((item, index) => {
+    item.dataset.index = index;
+  });
+};
+
+listContainer.addEventListener('drop', (event) => {
+  event.preventDefault();
+  if (draggedTask) {
+    const targetItem = event.target;
+    const targetIndex = Number(targetItem.dataset.index);
+    const draggedIndex = Number(draggedTask.dataset.index);
+
+    if (targetIndex !== draggedIndex) {
+      const items = Array.from(listContainer.children);
+      const targetOffset = targetIndex < draggedIndex ? 0 : 1;
+      listContainer.insertBefore(draggedTask, items[targetIndex + targetOffset]);
+      updateIndices();
+    }
+  }
+});
 
 export { setLocalStorage, getLocalStorage, populateTasks };
