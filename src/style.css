@@ -52,6 +52,7 @@ main {
 
 .edit--form input {
   border: none;
+  padding: 0.3rem;
   outline: none;
   width: 25rem;
   background-color: inherit;
