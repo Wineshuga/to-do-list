@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
+  
     <main>
-        <section class="list-div">
-            <div class="header">
-                <p>Today's To Do</p>
-            </div>
-            <div class="add-task">
-                <input type="text" name="add" id="add-to-list" placeholder="Add to your list...">
-                <img src="#" class="enter-btn" alt="enter">
-            </div>
-            <div class="all-tasks"></div>
-        </section>
-        <div class="button">
-            <input type="button" value="Clear all completed">
-        </div>
-    </main>
+      <div class="main--header">
+        <p>Today's To Do</p>
+    </div>
+      <form class="add-task">
+        <input type="text" name="add" id="add-to-list" placeholder="Add to your list...">
+        <i class="fa-solid fa-arrow-turn-down fa-rotate-90"></i>
+      </form>
+    <ul class="all-tasks">
+    </ul>
+</section>
+<div class="button">
+    <input type="button" value="Clear all completed">
+</div>
+  </main>
 </body>
 </html>
