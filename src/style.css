@@ -7,56 +7,109 @@
 
 body {
   background-color: bisque;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 main {
-  max-width: 24rem;
-  margin: 3rem auto;
-}
-
-ul,
-.button {
-  margin: 0 1rem;
-}
-
-li,
-.button {
   background-color: #fff;
-  margin-bottom: 0.1rem;
+  width: 90%;
 }
 
-.header,
-.todo-task,
-.button {
+.main--header {
   padding: 1rem;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 1rem;
-  border: 0;
+.main--header,
+.add-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-input[type=text]:focus {
+.add-task {
+  border-bottom: 1px solid bisque;
+  border-top: 1px solid bisque;
+  padding-right: 1rem;
+}
+
+.add-task input {
+  width: 85%;
+  border: none;
   outline: none;
+  padding: 1rem;
 }
 
-input[type=text]::placeholder {
-  font-style: italic;
+.list--item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid bisque;
+  padding: 1rem;
 }
 
-.todo-task,
-label {
-  cursor: move;
+.edit--form input {
+  border: none;
+  padding: 0.3rem;
+  outline: none;
+  width: 25rem;
+  background-color: inherit;
 }
 
-label {
-  margin-left: 0.5rem;
+.list--item:last-child {
+  border-bottom: none;
+}
+
+.list--item.about--to--edit {
+  background-color: rgba(255, 255, 0, 0.37);
+}
+
+.edit--form {
+  display: none;
+}
+
+.fa-trash-can {
+  display: none;
+}
+
+.list--item.about--to--edit .edit--form {
+  display: block;
+}
+
+.list--item.about--to--edit .desc {
+  display: none;
+}
+
+.list--item.about--to--edit .fa-trash-can {
+  display: block;
+}
+
+.list--item.about--to--edit .fa-ellipsis-vertical {
+  display: none;
+}
+
+.desc--container {
+  display: flex;
+  gap: 1rem;
+}
+
+.fa-solid {
+  cursor: pointer;
+  color: gray;
 }
 
 .button > input {
   width: 100%;
-  cursor: pointer;
+  padding: 1rem;
   border: none;
-  background-color: transparent;
+  background-color: #fff;
+  border-top: 1px solid bisque;
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 500px;
+  }
 }
