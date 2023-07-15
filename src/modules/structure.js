@@ -96,6 +96,19 @@ function addTasks(desc, complete = false) {
   setLocalStorage(tasks);
 }
 
+const clearCompleted = () => {
+  tasks = tasks.filter((task) => task.complete === false)
+    .map((task, idx) => {
+      task.index = idx + 1;
+      return task;
+    });
+  setLocalStorage(tasks);
+  populateTasks();
+};
+
+const button = document.querySelector('.button');
+button.addEventListener('click', clearCompleted);
+
 const form = document.querySelector('.add-task');
 const addToListInput = document.querySelector('#add-to-list');
 form.addEventListener('submit', (e) => {
