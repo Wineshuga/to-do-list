@@ -8,21 +8,22 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Install](#install)
-  - [Deployment](#deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 ToDo list ](#-todo-list-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [🚀 Live Demo Link ](#-live-demo-link-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Deployment](#deployment)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 # 📖 ToDo list <a name="about-project"></a>
 
@@ -45,6 +46,10 @@
 
 - **Drag and Drop**
 - **Clear all checked tasks**
+
+## 🚀 Live Demo Link <a name="live-demo-link"></a>
+
+[Live Demo Link here](https://wineshuga.github.io/to-do-list/dist/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
