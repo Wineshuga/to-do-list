@@ -16,7 +16,7 @@ const updateTask = (tasks) => {
   tasks.forEach((task, index) => {
     const checkBox = document.querySelectorAll('.check--box')[index];
     const desc = document.querySelectorAll('.desc')[index];
-    if (task.complete === 'true') {
+    if (task.complete) {
       checkBox.checked = true;
       desc.classList.add('checked');
     } else {
