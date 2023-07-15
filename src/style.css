@@ -95,6 +95,11 @@ main {
   gap: 1rem;
 }
 
+.checked {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 .fa-solid {
   cursor: pointer;
   color: gray;
@@ -106,6 +111,7 @@ main {
   border: none;
   background-color: #fff;
   border-top: 1px solid bisque;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

@@ -1,10 +1,7 @@
-let tasks = [];
-const setLocalStorage = () => {
-  localStorage.setItem('task', JSON.stringify(tasks));
-};
-const getLocalStorage = () => (localStorage.getItem('task') ? JSON.parse(localStorage.getItem('task')) : []);
+import { completedTask, updateTask } from './completedTask.js';
+import { setLocalStorage, getLocalStorage } from './localStorage.js';
 
-tasks = getLocalStorage();
+let tasks = getLocalStorage();
 const listContainer = document.querySelector('.all-tasks');
 
 const populateTasks = () => {
@@ -13,7 +10,7 @@ const populateTasks = () => {
   const listElements = tasks.map((task) => {
     const li = `<li class="list--item">
     <div class="desc--container">
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" class="check--box">
         <div id=${task.index} class="parent--div">
             <p class="desc">${task.desc}</p>
             <form action="" id=${task.index} class="edit--form">
@@ -60,6 +57,16 @@ const populateTasks = () => {
       editTask(value, inputId);
     });
   });
+  const checkBox = document.querySelectorAll('.check--box');
+  checkBox.forEach((checkBox, index) => {
+    checkBox.addEventListener('change', () => {
+      const taskText = document.querySelectorAll('.desc')[index];
+      completedTask(tasks[index], taskText, tasks);
+    });
+  });
+  if (tasks.length > 0) {
+    updateTask(tasks);
+  }
 };
 
 function deleteTask(index) {
@@ -68,7 +75,7 @@ function deleteTask(index) {
       task.index = idx + 1;
       return task;
     });
-  setLocalStorage();
+  setLocalStorage(tasks);
 }
 
 function editTask(input, index) {
@@ -76,7 +83,7 @@ function editTask(input, index) {
     if (task.index === +index) {
       task.desc = input;
       populateTasks();
-      setLocalStorage();
+      setLocalStorage(tasks);
     }
     return task;
   });
@@ -86,8 +93,21 @@ function addTasks(desc, complete = false) {
   const index = tasks.length + 1;
   const newTask = { desc, complete, index };
   tasks = [...tasks, newTask];
-  setLocalStorage();
+  setLocalStorage(tasks);
 }
+
+const clearCompleted = () => {
+  tasks = tasks.filter((task) => task.complete === false)
+    .map((task, idx) => {
+      task.index = idx + 1;
+      return task;
+    });
+  setLocalStorage(tasks);
+  populateTasks();
+};
+
+const button = document.querySelector('.button');
+button.addEventListener('click', clearCompleted);
 
 const form = document.querySelector('.add-task');
 const addToListInput = document.querySelector('#add-to-list');
@@ -135,4 +155,4 @@ listContainer.addEventListener('drop', (event) => {
   }
 });
 
-export { setLocalStorage, getLocalStorage, populateTasks };
+export default populateTasks;
