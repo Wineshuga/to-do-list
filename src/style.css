@@ -7,15 +7,12 @@
 
 body {
   background-color: bisque;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
 main {
   background-color: #fff;
   width: 90%;
+  margin: 5rem auto 0;
 }
 
 .main--header {
@@ -54,7 +51,7 @@ main {
   border: none;
   padding: 0.3rem;
   outline: none;
-  width: 25rem;
+  width: 85%;
   background-color: inherit;
 }
 
