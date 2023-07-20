@@ -117,7 +117,47 @@ const updateIndices = () => {
   });
 };
 
+function initialize() {
+  listContainer = document.querySelector('.all-tasks');
+  button = document.querySelector('.button');
+  button.addEventListener('click', clearCompleted);
+  form = document.querySelector('.add-task');
+  addToListInput = document.querySelector('#add-to-list');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const { value } = addToListInput;
+    if (value) {
+      addTasks(value);
+      populateTasks();
+      addToListInput.value = '';
+    }
+  });
+  listContainer.addEventListener('dragstart', (event) => {
+    draggedTask = event.target;
+  });
 
+  listContainer.addEventListener('dragover', (event) => {
+    event.preventDefault();
+  });
+  listContainer.addEventListener('drop', (event) => {
+    event.preventDefault();
+    if (draggedTask) {
+      const targetItem = event.target;
+      const targetIndex = Number(targetItem.dataset.index);
+      const draggedIndex = Number(draggedTask.dataset.index);
+      if (targetIndex !== draggedIndex) {
+        const items = Array.from(listContainer.children);
+        const targetOffset = targetIndex < draggedIndex ? 0 : 1;
+        listContainer.insertBefore(draggedTask, items[targetIndex + targetOffset]);
+        updateIndices();
+      }
+    }
+  });
+}
+
+function getTasks() {
+  return tasks;
+}
 export {
   populateTasks, getTasks,
   addTasks, deleteTask, editTask,
