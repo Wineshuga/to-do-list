@@ -2,7 +2,11 @@ import { completedTask, updateTask } from './completedTask.js';
 import { setLocalStorage, getLocalStorage } from './localStorage.js';
 
 let tasks = getLocalStorage();
-const listContainer = document.querySelector('.all-tasks');
+let listContainer;
+let button;
+let form;
+let addToListInput;
+let draggedTask = null;
 
 const populateTasks = () => {
   const listContainer = document.querySelector('.all-tasks');
@@ -92,7 +96,7 @@ function editTask(input, index) {
 function addTasks(desc, complete = false) {
   const index = tasks.length + 1;
   const newTask = { desc, complete, index };
-  tasks = [...tasks, newTask];
+  tasks.push(newTask);
   setLocalStorage(tasks);
 }
 
@@ -106,32 +110,6 @@ const clearCompleted = () => {
   populateTasks();
 };
 
-const button = document.querySelector('.button');
-button.addEventListener('click', clearCompleted);
-
-const form = document.querySelector('.add-task');
-const addToListInput = document.querySelector('#add-to-list');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const { value } = addToListInput;
-  if (value) {
-    addTasks(value);
-    populateTasks();
-    addToListInput.value = '';
-  }
-});
-
-// Drag and Drop functionality
-let draggedTask = null;
-
-listContainer.addEventListener('dragstart', (event) => {
-  draggedTask = event.target;
-});
-
-listContainer.addEventListener('dragover', (event) => {
-  event.preventDefault();
-});
-
 const updateIndices = () => {
   const items = Array.from(listContainer.children);
   items.forEach((item, index) => {
@@ -139,20 +117,9 @@ const updateIndices = () => {
   });
 };
 
-listContainer.addEventListener('drop', (event) => {
-  event.preventDefault();
-  if (draggedTask) {
-    const targetItem = event.target;
-    const targetIndex = Number(targetItem.dataset.index);
-    const draggedIndex = Number(draggedTask.dataset.index);
 
-    if (targetIndex !== draggedIndex) {
-      const items = Array.from(listContainer.children);
-      const targetOffset = targetIndex < draggedIndex ? 0 : 1;
-      listContainer.insertBefore(draggedTask, items[targetIndex + targetOffset]);
-      updateIndices();
-    }
-  }
-});
-
-export default populateTasks;
+export {
+  populateTasks, getTasks,
+  addTasks, deleteTask, editTask,
+  clearCompleted, initialize,
+};
