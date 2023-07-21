@@ -1,5 +1,5 @@
 import {
-  addTasks, deleteTask, getTasks, initialize,
+  editTask, clearCompleted, addTasks, getTasks,
 } from './structure.js';
 
 const listContainer = document.createElement('ul');
@@ -16,28 +16,20 @@ document.body.appendChild(button);
 document.body.appendChild(form);
 document.body.appendChild(addToListInput);
 
-describe('add and delete function', () => {
-  test('should add new task into the task array', () => {
+describe('edit and clear-completed-task function', () => {
+  test('editTask updates task description correctly', () => {
     // Arrange
-    const desc = 'Wash plate';
-
-    // act
-    initialize();
+    const desc = 'Task 1';
+    const desc2 = 'Task 2';
+    const desc3 = 'Task 3';
     addTasks(desc);
+    addTasks(desc2, true);
+    addTasks(desc3);
+    // Act
+    editTask('Updated Task 2', 2);
+    const allTasks = getTasks();
+
     // Assert
-
-    expect(getTasks()).toHaveLength(1);
-  });
-
-  test('should delete task from the task array', () => {
-    // Arrange
-    const index = 1;
-
-    // act
-    initialize();
-    deleteTask(index);
-    // Assert
-
-    expect(getTasks()).toHaveLength(0);
+    expect(allTasks[1].desc).toBe('Updated Task 2');
   });
 });
