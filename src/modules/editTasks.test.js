@@ -32,4 +32,23 @@ describe('edit and clear-completed-task function', () => {
     // Assert
     expect(allTasks[1].desc).toBe('Updated Task 2');
   });
+  test('clearCompleted removes completed tasks and updates indices', () => {
+    // Arrange
+    const tasks = [
+      { desc: 'Task 1', complete: false, index: 1 },
+      { desc: 'Task 2', complete: true, index: 2 },
+      { desc: 'Task 3', complete: false, index: 3 },
+    ];
+
+    // Act
+    const remainingTasks = clearCompleted();
+
+    // Assert: Check that the tasks array no longer contains completed tasks
+    const completedTasks = remainingTasks.filter((task) => task.complete);
+    expect(completedTasks.length).toEqual(0);
+
+    // Assert: Check that the remaining tasks have updated indices
+    expect(tasks[0].index).toBe(1);
+    expect(tasks[1].index).toBe(2);
+  });
 });
