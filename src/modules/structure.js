@@ -108,8 +108,10 @@ const clearCompleted = () => {
     });
   setLocalStorage(tasks);
   populateTasks();
+  return tasks;
 };
 
+// Drag functionality
 const updateIndices = () => {
   const items = Array.from(listContainer.children);
   items.forEach((item, index) => {
